@@ -11,8 +11,8 @@ on run argv
 	
 	set dbPath to my expandUser(item 1 of argv)
 	set outRoot to my expandUser(item 2 of argv)
-	
-	if my pathExists(dbPath) is false then my die("DB-Pfad nicht gefunden: " & dbPath)
+
+	if my pathExists(dbPath) is false then my die("DB-Path not found: " & dbPath)
 	do shell script "mkdir -p " & quoted form of outRoot
 	
 	tell application "DEVONthink 3"
@@ -28,9 +28,9 @@ on run argv
 		my exportGroup(root of dbRef, rootDest)
 	end tell
 	
-	do shell script "printf '%s\\n' " & quoted form of ("Fertig: " & rootDest)
-    do shell script "printf '%s\\n' " & quoted form of ("Exportierte Dateien: " & (exportedCount as string))
-    do shell script "printf '%s\\n' " & quoted form of ("†bersprungen:        " & (skippedCount as string))
+	do shell script "printf '%s\\n' " & quoted form of ("Ready: " & rootDest)
+    do shell script "printf '%s\\n' " & quoted form of ("Exported Files: " & (exportedCount as string))
+    do shell script "printf '%s\\n' " & quoted form of ("Skipped:        " & (skippedCount as string))
 end run
 
 

@@ -39,7 +39,7 @@ on exportGroup(g, dest)
     set nm to name of g
     set kids to children of g
 
-    -- 1) Sonderf둳le am Root: Trash/Tags komplett 웑erspringen
+    -- 1) Sonderf채lle am Root: Trash/Tags komplett 체berspringen
     if (nm is "Papierkorb") or (nm is "Trash") or (nm is "Tags") then
       return
     end if
@@ -55,10 +55,10 @@ on exportGroup(g, dest)
 
     repeat with r in kids
       if (type of r) is group then
-        -- Rekursiv nur f웦 normale Gruppen (Sondergruppen werden per Name oben gefiltert)
+        -- Rekursiv nur f체r normale Gruppen (Sondergruppen werden per Name oben gefiltert)
         my exportGroup(r, here)
       else
-        -- Dateien/Eintr둮e exportieren
+        -- Dateien/Eintr채ge exportieren
         my exportOne(r, here)
       end if
     end repeat
@@ -104,7 +104,7 @@ on exportOne(r, here)
       set recName to name of r
     end tell
     if srcPath is not missing value then
-      -- Ziel-Dateiname: m쉍lichst Originaldateiname mit Erweiterung
+      -- Ziel-Dateiname: m철glichst Originaldateiname mit Erweiterung
       set baseName to do shell script "/usr/bin/basename " & quoted form of srcPath
       if baseName is "" then set baseName to my safeName(recName)
       set destPath to here & "/" & baseName
@@ -277,7 +277,7 @@ on writeRecordJSON(r, exportedPath)
       set locationVal to ""
     end try
 
-    -- optionale / typabh둵gige Felder
+    -- optionale / typabh채ngige Felder
     set wordCountVal to missing value
     try
       set wordCountVal to word count of r
@@ -318,7 +318,7 @@ on writeRecordJSON(r, exportedPath)
     if (count of tis) > 1 then set ext to item -1 of tis
   end try
 
-  -- JSON-Teile nur mit vorhandenen Werten f웞len
+  -- JSON-Teile nur mit vorhandenen Werten f체llen
   set parts to {}
   set parts to my addKVText(parts, "name", recName)
   set parts to my addKVText(parts, "uuid", recUUID)
@@ -364,7 +364,7 @@ on writeText(t, posixPath)
 end writeText
 
 on shQuote(s)
-	-- sichere Single-Quote-Quoting f웦 die Shell: ' ? '\''  (end quote, escaped quote, reopen)
+	-- sichere Single-Quote-Quoting f체r die Shell: ' ? '\''  (end quote, escaped quote, reopen)
 	set s to my replaceText(s, "'", "'\\''")
 	return "'" & s & "'"
 end shQuote
